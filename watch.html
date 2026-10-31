@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>完整版 · 刘思雨作品集</title>
+<meta name="theme-color" content="#0A0A0B">
+<style>
+  :root { --bg:#0A0A0B; --text:#F5F5F7; --muted:#7A7A80; --blue:#2997FF; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; padding: 24px;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  }
+  .box { width: min(1100px, 100%); }
+  video {
+    width: 100%; max-height: 78vh; display: block;
+    background: #000; border-radius: 20px; border: 1px solid rgba(255,255,255,.10);
+    box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  }
+  .bar {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+    margin-top: 16px; font-size: 13px; color: var(--muted);
+  }
+  .bar b { color: var(--text); font-weight: 500; font-size: 15px; }
+  .tip { font-size: 12px; color: var(--muted); }
+  .back { color: var(--blue); font-size: 13px; text-decoration: none; }
+  .err { font-size: 14px; color: var(--muted); text-align: center; padding: 60px 0; }
+</style>
+</head>
+<body>
+  <div class="box" id="box"></div>
+
+<script>
+(function () {
+  var OK = ['hanzheng-doc','microcourse','wechat-clip','news-data',
+            'ai-microcourse','ai-shortvideo','vclip-long','vclip-short'];
+  var TITLE = {
+    'hanzheng-doc':'汉正街板儿爷纪实作品', 'microcourse':'纪实类微课',
+    'wechat-clip':'瑞肴餐厅宣传片', 'news-data':'新闻舆论数据分析',
+    'ai-microcourse':'凉州词', 'ai-shortvideo':'丝路回响',
+    'vclip-long':'网感IP类视频', 'vclip-short':'3秒留人视频'
+  };
+  var k = new URLSearchParams(location.search).get('k') || '';
+  var box = document.getElementById('box');
+
+  if (OK.indexOf(k) === -1) {
+    box.innerHTML = '<p class="err">没有找到这个视频。</p>';
+    return;
+  }
+  var v = document.createElement('video');
+  v.src = 'assets/full/' + encodeURIComponent(k) + '.mp4';
+  v.controls = true;
+  v.autoplay = true;
+  v.playsInline = true;
+  v.preload = 'metadata';
+  v.setAttribute('controlsList', 'nodownload');
+  v.setAttribute('disablepictureinpicture', '');
+  v.draggable = false;
+  box.appendChild(v);
+
+  var bar = document.createElement('div');
+  bar.className = 'bar';
+  bar.innerHTML = '<span><b>' + (TITLE[k] || '完整版') + '</b> · 完整片</span>' +
+                  '<span class="tip">仅供观看 · 已加水印</span>' +
+                  '<a class="back" href="index.html">← 返回作品集</a>';
+  box.appendChild(bar);
+
+  document.addEventListener('contextmenu', function (e) { e.preventDefault(); return false; });
+  document.addEventListener('dragstart', function (e) { e.preventDefault(); return false; });
+  document.addEventListener('keydown', function (e) {
+    var kk = (e.key || '').toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && kk === 's') e.preventDefault();
+  });
+})();
+</script>
+</body>
+</html>
