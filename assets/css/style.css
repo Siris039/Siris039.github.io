@@ -680,3 +680,44 @@ img {
 }
 body { -webkit-touch-callout: none; }
 .vrow, .doccard, .feature, .contact__cell, .stat { box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+
+/* ---------- 21. VI 手册横向翻阅条 ---------- */
+.vistrip-hint {
+  margin: clamp(20px, 2.4vw, 30px) 0 12px; font-size: 11.5px;
+  color: var(--text-3); font-family: var(--mono); letter-spacing: .08em;
+}
+.vistrip-wrap { position: relative; margin-top: 4px; }
+.vistrip-wrap::after {
+  content: ""; position: absolute; top: 0; right: 0; bottom: 22px;
+  width: clamp(36px, 7vw, 84px); pointer-events: none; z-index: 4;
+  background: linear-gradient(90deg, rgba(10,10,11,0), var(--bg));
+}
+.vistrip {
+  display: flex;
+  grid-template-columns: none;
+  gap: clamp(12px, 1.5vw, 18px);
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  padding: 4px 2px 22px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.22) transparent;
+}
+.vistrip::-webkit-scrollbar { height: 6px; }
+.vistrip::-webkit-scrollbar-track { background: rgba(255,255,255,.05); border-radius: 99px; }
+.vistrip::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 99px; }
+.vistrip__item { flex: 0 0 clamp(180px, 20vw, 252px); scroll-snap-align: start; }
+.vistrip__item img { display: block; width: 100%; height: auto; }
+.vistrip__item figcaption {
+  position: static; opacity: 1; transform: none;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+  padding: 11px 2px 0; background: none;
+}
+.vistrip__item figcaption h4 { font-size: 12.5px; line-height: 1.4; }
+.vistrip__item figcaption p { font-size: 10.5px; color: var(--text-3); font-family: var(--mono); }
+.doccard__foot { margin-top: auto; padding-top: 4px; }
+@media (hover: none) { .vistrip-wrap::after { display: none; } }
+@media (max-width: 700px) {
+  .vistrip { gap: 10px; padding-bottom: 16px; }
+  .vistrip__item { flex: 0 0 clamp(150px, 58vw, 210px); }
+}
