@@ -621,18 +621,18 @@ button { font-family: inherit; }
   .lb__stage { inset: 60px 12px 112px; }
   /* 手机：照片收成下方一条横带（顶部让出导航），脸推到右侧且不被切 */
   .hero__bg { top: clamp(140px, 24vh, 230px); }
-  .hero__bg img { object-position: 24% 0%; }
+  .hero__bg img { object-position: 6% 0%; filter: brightness(1.34) saturate(1.06) contrast(1.03); }
   .hero__txt { max-width: 62%; }
   .hero__veil {
     background:
       linear-gradient(90deg,
         #0A0A0B 0%, #0A0A0B 24%,
         rgba(10,10,11,.95) 36%,
-        rgba(10,10,11,.86) 46%,
-        rgba(10,10,11,.58) 58%,
-        rgba(10,10,11,.30) 72%,
-        rgba(10,10,11,.20) 88%,
-        rgba(10,10,11,.30) 100%),
+        rgba(10,10,11,.82) 46%,
+        rgba(10,10,11,.44) 56%,
+        rgba(10,10,11,.20) 68%,
+        rgba(10,10,11,.07) 84%,
+        rgba(10,10,11,.22) 100%),
       linear-gradient(180deg,
         rgba(10,10,11,.14) 0%, rgba(10,10,11,0) 9%,
         rgba(10,10,11,0) 58%, rgba(10,10,11,.50) 82%, #0A0A0B 97%);
@@ -646,7 +646,8 @@ button { font-family: inherit; }
   }
   .hero__role span {
     padding: 7px 13px; border: 1px solid var(--line-2); border-radius: var(--r-pill);
-    background: rgba(255,255,255,.05); color: var(--text-2);
+    background: rgba(16,16,18,.55); color: var(--text-2);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   }
   .hero__role span + span::before { content: none; margin: 0; }
 }
